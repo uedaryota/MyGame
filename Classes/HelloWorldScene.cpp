@@ -117,9 +117,31 @@ bool HelloWorld::init()
     //}
 
 	// テクスチャファイル名を指定して、スプライトを作成
-	Sprite* sprite = Sprite::create("neko.png");
+	sprite = Sprite::create("neko.png");
 	// シーングラフにつなぐ
 	this->addChild(sprite);
+
+	//表示座標を指定
+	//sprite->setPosition(Vec2(700.0f, 350.0f));
+	sprite->setPosition(Vec2(1180.0f, 600.0f));
+	//回転角を指定(45度)
+	//sprite->setRotation(45.0f);
+	//拡縮を指定(横3倍、縦4倍)
+	//sprite->setScale(3.0f, 4.0f);
+	sprite->setScale(0.3f, 0.3f);
+	//左右反転
+	//sprite->setFlippedX(true);
+	//上下反転
+	//sprite->setFlippedY(true);
+	//非表示にする
+	//sprite->setVisible(false);
+	//色あいを設定
+	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
+	//不透明度を設定
+	//sprite->setOpacity(0x80);
+
+	//updateが呼び出されるようにする
+	this->scheduleUpdate();
 
     return true;
 }
@@ -136,4 +158,15 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+void HelloWorld::update(float delta)
+{
+	// スプライトの現在座標を取得
+	Vec2 pos = sprite->getPosition();
+	// 座標を移動させる
+	//pos += Vec2(1.0f, 1.0f);
+	pos += Vec2(-4.0f, 0);
+	// 移動後の座標を反映
+	sprite->setPosition(pos);
 }
