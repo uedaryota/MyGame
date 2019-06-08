@@ -123,7 +123,7 @@ bool HelloWorld::init()
 
 	//表示座標を指定
 	//sprite->setPosition(Vec2(700.0f, 350.0f));
-	sprite->setPosition(Vec2(1180.0f, 600.0f));
+	sprite->setPosition(Vec2(1080.0f, 520.0f));
 	//回転角を指定(45度)
 	//sprite->setRotation(45.0f);
 	//拡縮を指定(横3倍、縦4倍)
@@ -144,7 +144,9 @@ bool HelloWorld::init()
 	//updateが呼び出されるようにする
 	this->scheduleUpdate();
 
-	counter = 0;
+	//counter = 0;
+
+	state = 0;
 
     return true;
 }
@@ -165,17 +167,66 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
+	Vec2 pos;
+	switch (state)
+	{
+	case 0:
+		// 左移動
+		pos = sprite->getPosition();
+		pos += Vec2(-5.0f, 0.0f);
+		sprite->setPosition(pos);
+		// 左端に達したら
+		if (pos.x <= 100)
+		{
+			state = 1; // 下移動に切り替える
+		}
+		break;
+	case 1:
+		// 下移動
+		pos = sprite->getPosition();
+		pos += Vec2(0.0f, -5.0f);
+		sprite->setPosition(pos);
+		// 下端に達したら
+		if (pos.y <= 100)
+		{
+			state = 2; // 右移動に切り替える
+		}
+		break;
+	case 2:
+		// 右移動
+		pos = sprite->getPosition();
+		pos += Vec2(5.0f, 0.0f);
+		sprite->setPosition(pos);
+		// 下端に達したら
+		if (pos.x >= 1080)
+		{
+			state = 3; // 右移動に切り替える
+		}
+		break;
+	default:
+		// 上移動
+		pos = sprite->getPosition();
+		pos += Vec2(0.0f, 5.0f);
+		sprite->setPosition(pos);
+		// 下端に達したら
+		if (pos.y >= 520)
+		{
+			state = 0; // 右移動に切り替える
+		}
+		break;
+	}
 	// スプライトの現在座標を取得
-	Vec2 pos = sprite->getPosition();
+	//Vec2 pos = sprite->getPosition();
 	// 座標を移動させる
 	//pos += Vec2(1.0f, 1.0f);
-	pos.x -= 4.0f;
+	//pos.x -= 4.0f;
+	//pos += Vec2(-5.0f, 0.0f);
 	// 移動後の座標を反映
-	sprite->setPosition(pos);
+	//sprite->setPosition(pos);
 
 	//だんだん透明にする処理
 	//5秒 = 300frm
-	counter++;
+	/*counter++;
 	float opacity = 255 - counter / 300.0f * 255.0f;
-	sprite->setOpacity(opacity);
+	sprite->setOpacity(opacity);*/
 }

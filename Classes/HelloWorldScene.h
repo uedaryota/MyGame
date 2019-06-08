@@ -46,7 +46,10 @@ public:
 	cocos2d::Sprite* sprite;
 
 	//実行からのカウント
-	int counter;
+	//int counter;
+
+	//どちらかに移動中なのか
+	int state;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
