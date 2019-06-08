@@ -139,9 +139,12 @@ bool HelloWorld::init()
 	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
 	//不透明度を設定
 	//sprite->setOpacity(0x80);
+	sprite->setOpacity(255);
 
 	//updateが呼び出されるようにする
 	this->scheduleUpdate();
+
+	counter = 0;
 
     return true;
 }
@@ -166,7 +169,13 @@ void HelloWorld::update(float delta)
 	Vec2 pos = sprite->getPosition();
 	// 座標を移動させる
 	//pos += Vec2(1.0f, 1.0f);
-	pos += Vec2(-4.0f, 0);
+	pos.x -= 4.0f;
 	// 移動後の座標を反映
 	sprite->setPosition(pos);
+
+	//だんだん透明にする処理
+	//5秒 = 300frm
+	counter++;
+	float opacity = 255 - counter / 300.0f * 255.0f;
+	sprite->setOpacity(opacity);
 }
