@@ -145,9 +145,9 @@ bool HelloWorld::init()
 	//画像の左下が(0,0)
 	//画像の右上が(0,0)の座標系で
 	//基準点を指定する
-	sprite->setAnchorPoint(Vec2(0.5f, 0.5f));
+	sprite->setAnchorPoint(Vec2(0.0f, 1.0f));
 
-	//sprite->setRotation(450.0f);
+	sprite->setRotation(405.0f);
 	//sprite->setRotation3D();
 
 	//                          R    G    B
