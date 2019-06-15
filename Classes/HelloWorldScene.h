@@ -44,12 +44,20 @@ public:
 
 	//スプライト
 	cocos2d::Sprite* sprite;
+	cocos2d::Sprite* sprite2;
 
 	//実行からのカウント
 	int counter;
 
 	//どちらかに移動中なのか
 	int state;
+
+	float rot;
+
+	float blue;
+
+	//不透明度
+	//float opacity;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
