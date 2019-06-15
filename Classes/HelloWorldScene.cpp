@@ -117,18 +117,20 @@ bool HelloWorld::init()
     //}
 
 	// テクスチャファイル名を指定して、スプライトを作成
-	sprite = Sprite::create("neko.png");
+	//sprite = Sprite::create("neko.png");
+	sprite = Sprite::create("sample09.png");
 	// シーングラフにつなぐ
 	this->addChild(sprite);
 
 	//表示座標を指定
 	//sprite->setPosition(Vec2(700.0f, 350.0f));
-	sprite->setPosition(Vec2(1080.0f, 520.0f));
+	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	//回転角を指定(45度)
 	//sprite->setRotation(45.0f);
 	//拡縮を指定(横3倍、縦4倍)
 	//sprite->setScale(3.0f, 4.0f);
-	sprite->setScale(0.3f, 0.3f);
+	//sprite->setScale(0.3f, 0.3f);
+	sprite->setScale(10.0f, 10.0f);
 	//左右反転
 	//sprite->setFlippedX(true);
 	//上下反転
@@ -140,11 +142,28 @@ bool HelloWorld::init()
 	//不透明度を設定
 	//sprite->setOpacity(0x80);
 	sprite->setOpacity(255);
+	//画像の左下が(0,0)
+	//画像の右上が(0,0)の座標系で
+	//基準点を指定する
+	sprite->setAnchorPoint(Vec2(0.5f, 0.5f));
+
+	//sprite->setRotation(450.0f);
+	//sprite->setRotation3D();
+
+	//                          R    G    B
+	//sprite->setColor(Color3B(  0,   0, 255));
+
+	//左右反転
+	//sprite->setFlippedX(true);
+
+	//画像カット                   X   Y    W    H
+	//sprite->setTextureRect(Rect(120, 20, 320, 320));
+	sprite->setTextureRect(Rect(0, 32, 32, 32));
 
 	//updateが呼び出されるようにする
-	this->scheduleUpdate();
+	//this->scheduleUpdate();
 
-	//counter = 0;
+	counter = 0;
 
 	state = 0;
 
