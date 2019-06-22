@@ -101,6 +101,26 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
+	for (int i = 0; i < 20; i++)
+	{
+		sprite[i] = Sprite::create("neko.png");
+		this->addChild(sprite[i]);
+		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2 + origin.y));
+		sprite[i]->setScale(0.3f);
+		FadeIn* action1 = FadeIn::create(5.0f);
+		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
+		EaseIn* action3 = EaseIn::create(action2, 5.0f);
+		MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500, 1000));
+		EaseBounceIn* action5 = EaseBounceIn::create(action4);
+		JumpTo* action6 = JumpTo::create(5.0f, Vec2(-300, -300), 50.0f, 2);
+		sprite[i]->runAction(action1);
+		sprite[i]->runAction(action2);
+		sprite[i]->runAction(action3);
+		sprite[i]->runAction(action4);
+		sprite[i]->runAction(action5);
+		sprite[i]->runAction(action6);
+	}
+
     // add "HelloWorld" splash screen"
     //auto sprite = Sprite::create("HelloWorld.png");
     //if (sprite == nullptr)
@@ -117,10 +137,10 @@ bool HelloWorld::init()
     //}
 
 	// テクスチャファイル名を指定して、スプライトを作成
-	sprite = Sprite::create("neko.png");
+	/*sprite = Sprite::create("neko.png");*/
 	//sprite = Sprite::create("sample01.png");
 	// シーングラフにつなぐ
-	this->addChild(sprite);
+	/*this->addChild(sprite);*/
 
 	//アクションの作成(1秒かけて右に200、上に100動く)
 	//MoveTo* action1 = MoveTo::create(1.0f, Vec2(200, 100));
@@ -131,9 +151,9 @@ bool HelloWorld::init()
 	conf.controlPoint_2 = Vec2(-700, -700);
 	conf.endPosition = Vec2(700, 700);
 	BezierTo* action1 = BezierTo::create(3.0f, conf);*/
-	sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+	/*sprite->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	sprite->setScale(0.3f, 0.3f);
-	sprite->setOpacity(0);
+	sprite->setOpacity(0);*/
 	/*FadeIn* action1 = FadeIn::create(5.0f);
 	RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
 	EaseIn* action3 = EaseIn::create(action2, 5.0f);
@@ -142,44 +162,44 @@ bool HelloWorld::init()
 	JumpTo* action6 = JumpTo::create(5.0f, Vec2(-500, -500), 500.0f, 2);*/
 
 	/////////sprite2
-	sprite2 = Sprite::create("neko.png");
+	/*sprite2 = Sprite::create("neko.png");*/
 	// シーングラフにつなぐ
-	this->addChild(sprite2);
+	/*this->addChild(sprite2);
 
 	sprite2->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 	sprite2->setScale(0.3f, 0.3f);
-	sprite2->setOpacity(0);
+	sprite2->setOpacity(0);*/
 	//sprite2->runAction(action1->clone());
 
 	//ノードに対してアクションを実行する
-	{
+	//{
 
-		FadeIn* action1 = FadeIn::create(5.0f);
-		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
-		EaseIn* action3 = EaseIn::create(action2, 5.0f);
-		MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500, 1000));
-		EaseBounceIn* action5 = EaseBounceIn::create(action4);
-		JumpTo* action6 = JumpTo::create(5.0f, Vec2(-300, -300), 50.0f, 2);
-		sprite->runAction(action1);
-		sprite->runAction(action2);
-		sprite->runAction(action3);
-		sprite->runAction(action4);
-		sprite->runAction(action5);
-		sprite->runAction(action6);
-	}
+	//	FadeIn* action1 = FadeIn::create(5.0f);
+	//	RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
+	//	EaseIn* action3 = EaseIn::create(action2, 5.0f);
+	//	MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500, 1000));
+	//	EaseBounceIn* action5 = EaseBounceIn::create(action4);
+	//	JumpTo* action6 = JumpTo::create(5.0f, Vec2(-300, -300), 50.0f, 2);
+	//	sprite->runAction(action1);
+	//	sprite->runAction(action2);
+	//	sprite->runAction(action3);
+	//	sprite->runAction(action4);
+	//	sprite->runAction(action5);
+	//	sprite->runAction(action6);
+	//}
 
-	//Action2
-	{
+	////Action2
+	//{
 
-		FadeIn* action1 = FadeIn::create(5.0f);
-		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
-		EaseIn* action3 = EaseIn::create(action2, 5.0f);
-		MoveTo* action4 = MoveTo::create(10.0f, Vec2(500, 500));
-		sprite2->runAction(action1);
-		sprite2->runAction(action2);
-		sprite2->runAction(action3);
-		sprite2->runAction(action4);
-	}
+	//	FadeIn* action1 = FadeIn::create(5.0f);
+	//	RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
+	//	EaseIn* action3 = EaseIn::create(action2, 5.0f);
+	//	MoveTo* action4 = MoveTo::create(10.0f, Vec2(500, 500));
+	//	sprite2->runAction(action1);
+	//	sprite2->runAction(action2);
+	//	sprite2->runAction(action3);
+	//	sprite2->runAction(action4);
+	//}
 
 
 	//表示座標を指定
