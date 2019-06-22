@@ -43,7 +43,7 @@ public:
     CREATE_FUNC(HelloWorld);
 
 	//Sprite配列
-	cocos2d::Sprite* sprite[50];
+	cocos2d::Sprite* sprite[1000];
 
 	//スプライト
 	/*cocos2d::Sprite* sprite;

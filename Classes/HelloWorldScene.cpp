@@ -101,18 +101,27 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	for (int i = 0; i < 20; i++)
+	//—”‚Ì‰Šú‰» C#¨(Random r = new Random();)
+	srand(time(nullptr));
+
+	for (int i = 0; i < 3000; i++)
 	{
 		sprite[i] = Sprite::create("neko.png");
 		this->addChild(sprite[i]);
 		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2 + origin.y));
 		sprite[i]->setScale(0.3f);
+
+		float mx, my;
+
+		mx = (float)rand() / RAND_MAX;
+		my = (float)rand() / RAND_MAX;
+
 		FadeIn* action1 = FadeIn::create(5.0f);
-		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
+		RotateTo* action2 = RotateTo::create(30.0f, Vec3(10800, 29000, 36000));
 		EaseIn* action3 = EaseIn::create(action2, 5.0f);
-		MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500, 1000));
+		MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500 * mx, 1000 * my));
 		EaseBounceIn* action5 = EaseBounceIn::create(action4);
-		JumpTo* action6 = JumpTo::create(5.0f, Vec2(-300, -300), 50.0f, 2);
+		JumpTo* action6 = JumpTo::create(5.0f, Vec2(-150, -100), 50.0f, 2);
 		sprite[i]->runAction(action1);
 		sprite[i]->runAction(action2);
 		sprite[i]->runAction(action3);
