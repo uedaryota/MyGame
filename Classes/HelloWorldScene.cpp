@@ -108,7 +108,7 @@ bool HelloWorld::init()
 	{
 		sprite[i] = Sprite::create("neko.png");
 		this->addChild(sprite[i]);
-		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2 + origin.y));
+		sprite[i]->setPosition(Vec2(100 * i, 0));
 		sprite[i]->setScale(0.3f);
 
 		float mx, my;
@@ -117,17 +117,17 @@ bool HelloWorld::init()
 		my = (float)rand() / RAND_MAX;
 
 		FadeIn* action1 = FadeIn::create(5.0f);
-		RotateTo* action2 = RotateTo::create(30.0f, Vec3(10800, 29000, 36000));
+		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
 		EaseIn* action3 = EaseIn::create(action2, 5.0f);
-		MoveTo* action4 = MoveTo::create(10.0f, Vec2(1500 * mx, 1000 * my));
-		EaseBounceIn* action5 = EaseBounceIn::create(action4);
-		JumpTo* action6 = JumpTo::create(5.0f, Vec2(-150, -100), 50.0f, 2);
+		MoveBy* action4 = MoveBy::create(10.0f, Vec2(-1000 * mx, 700 * my));
+		EaseBounceInOut* action5 = EaseBounceInOut::create(action4);
+		//JumpTo* action6 = JumpTo::create(5.0f, Vec2(-150, -100), 50.0f, 2);
 		sprite[i]->runAction(action1);
 		sprite[i]->runAction(action2);
 		sprite[i]->runAction(action3);
 		sprite[i]->runAction(action4);
 		sprite[i]->runAction(action5);
-		sprite[i]->runAction(action6);
+		//sprite[i]->runAction(action6);
 	}
 
     // add "HelloWorld" splash screen"
