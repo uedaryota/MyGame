@@ -101,34 +101,65 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	//—”‚Ì‰Šú‰» C#¨(Random r = new Random();)
-	srand(time(nullptr));
-
-	for (int i = 0; i < 3000; i++)
+	for (int i = 0; i < 10; i++)
 	{
+		//float sx, sy;
+		//sx = (float)rand() / RAND_MAX * visibleSize.width;
+		//sy = (float)rand() / RAND_MAX * visibleSize.height;
+		float sx, sy;
+		sx = (float)rand() / RAND_MAX * visibleSize.width;
+		sy = (float)rand() / RAND_MAX * visibleSize.height;
+
 		sprite[i] = Sprite::create("neko.png");
 		this->addChild(sprite[i]);
-		sprite[i]->setPosition(Vec2(100 * i, 0));
-		sprite[i]->setScale(0.3f);
+		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2.0f));
+		//sprite[i]->setPosition(Vec2(sx, sy));
+		//sprite[i]->setPosition(Vec2(100 * i, visibleSize.height/2.0f));
+		sprite[i]->setPosition(Vec2(sx, sy));
+		sprite[i]->setScale(0.1f);
 
-		float mx, my;
+		//float ex, ey;
+		//ex = (float)rand()/ RAND_MAX * visibleSize.width;
+		//ey = (float)rand()/ RAND_MAX * visibleSize.height;
+		float ex, ey;
+		ex = (float)rand() / RAND_MAX * visibleSize.width;
+		ey = (float)rand() / RAND_MAX * visibleSize.height;
 
-		mx = (float)rand() / RAND_MAX;
-		my = (float)rand() / RAND_MAX;
-
-		FadeIn* action1 = FadeIn::create(5.0f);
-		RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
-		EaseIn* action3 = EaseIn::create(action2, 5.0f);
-		MoveBy* action4 = MoveBy::create(10.0f, Vec2(-1000 * mx, 700 * my));
-		EaseBounceInOut* action5 = EaseBounceInOut::create(action4);
-		//JumpTo* action6 = JumpTo::create(5.0f, Vec2(-150, -100), 50.0f, 2);
+		//MoveTo* action1 = MoveTo::create(1.0f, Vec2(ex, ey));
+		JumpBy* action1 = JumpBy::create(1.0f, Vec2(300, 0), 300, 1);
+		MoveTo* action2 = MoveTo::create(1.0f, Vec2(ex, ey));
+		//JumpBy* action1 = JumpBy::create(1.0f, Vec2(300,0), 300, 1);
 		sprite[i]->runAction(action1);
-		sprite[i]->runAction(action2);
-		sprite[i]->runAction(action3);
-		sprite[i]->runAction(action4);
-		sprite[i]->runAction(action5);
-		//sprite[i]->runAction(action6);
 	}
+
+	//—”‚Ì‰Šú‰» C#¨(Random r = new Random();)
+	//srand(time(nullptr));
+
+	//for (int i = 0; i < 3000; i++)
+	//{
+	//	sprite[i] = Sprite::create("neko.png");
+	//	this->addChild(sprite[i]);
+	//	sprite[i]->setPosition(Vec2(100 * i, 0));
+	//	sprite[i]->setScale(0.3f);
+
+	//	float mx, my;
+
+	//	mx = (float)rand() / RAND_MAX;
+	//	my = (float)rand() / RAND_MAX;
+
+	//	FadeIn* action1 = FadeIn::create(5.0f);
+	//	RotateTo* action2 = RotateTo::create(10.0f, Vec3(10800, 29000, 36000));
+	//	EaseIn* action3 = EaseIn::create(action2, 5.0f);
+	//	MoveBy* action4 = MoveBy::create(10.0f, Vec2(-1000 * mx, 400 * my));
+	//	EaseBounceInOut* action5 = EaseBounceInOut::create(action4);
+	//	//JumpTo* action6 = JumpTo::create(5.0f, Vec2(-150, -100), 50.0f, 2);
+	//	sprite[i]->runAction(action1);
+	//	sprite[i]->runAction(action2);
+	//	sprite[i]->runAction(action3);
+	//	sprite[i]->runAction(action4);
+	//	sprite[i]->runAction(action5);
+	//	//sprite[i]->runAction(action6);
+	//}
 
     // add "HelloWorld" splash screen"
     //auto sprite = Sprite::create("HelloWorld.png");
