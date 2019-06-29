@@ -108,8 +108,9 @@ bool HelloWorld::init()
 
 	JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
 	//DelayTime* action2 = DelayTime::create(1.0f);
-	ToggleVisibility* action2 = ToggleVisibility::create();
-	JumpBy* action3 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
+	//ToggleVisibility* action2 = ToggleVisibility::create();
+	JumpBy* action2 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
+	RemoveSelf* action3 = RemoveSelf::create();
 	Sequence* action4 = Sequence::create(action1, action2, action3, nullptr);
 	RotateTo* action5 = RotateTo::create(2.0f, Vec3(14400, 0, 0));
 	Spawn* action6 = Spawn::create(action4, action5, nullptr);
