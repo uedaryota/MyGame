@@ -107,14 +107,16 @@ bool HelloWorld::init()
 	spr->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 
 	JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
-	JumpBy* action2 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
-	Sequence* action3 = Sequence::create(action1, action2, nullptr);
-	RotateTo* action4 = RotateTo::create(1.0f, Vec3(7200, 100, 100));
-	Spawn* action5 = Spawn::create(action3, action4, nullptr);
+	//DelayTime* action2 = DelayTime::create(1.0f);
+	ToggleVisibility* action2 = ToggleVisibility::create();
+	JumpBy* action3 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
+	Sequence* action4 = Sequence::create(action1, action2, action3, nullptr);
+	RotateTo* action5 = RotateTo::create(2.0f, Vec3(14400, 0, 0));
+	Spawn* action6 = Spawn::create(action4, action5, nullptr);
 	//指定アクションを3回繰り返すアクション
-	RepeatForever* action6 = RepeatForever::create(action5);
+	RepeatForever* action7 = RepeatForever::create(action6);
 	//連携アクションを実行
-	spr->runAction(action6);
+	spr->runAction(action7);
 
 	//移動アクションの生成
 	//MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
