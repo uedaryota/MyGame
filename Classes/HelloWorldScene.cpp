@@ -113,10 +113,19 @@ bool HelloWorld::init()
 	MoveTo* moveRight = MoveTo::create(5.0f, Vec2(visibleSize.width - 100, visibleSize.height - 100));
 	RotateTo* action = RotateTo::create(10.0f, Vec3(360 * 8 * 10, 0, 0));
 
+	// 連続アクションの生成 
+	Sequence* seq1 = Sequence::create(moveLeft, moveRight, nullptr);
+
+	// フェードアクションの生成
+	FadeOut* fadeOut = FadeOut::create(5.0f);
+	FadeIn* fadeIn = FadeIn::create(5.0f);
+
 	// 連続アクションの生成
-	Sequence* seq = Sequence::create(moveLeft, moveRight, nullptr);
-	Spawn* spa = Spawn::create(seq, action, nullptr);
-	RepeatForever* ever = RepeatForever::create(spa);
+	Sequence* seq2 = Sequence::create(fadeOut, fadeIn, nullptr);
+
+	// 同時アクションの生成
+	Spawn* allAction = Spawn::create(seq1, seq2, action , nullptr);
+	RepeatForever* ever = RepeatForever::create(allAction);
 	// アクション実行
 	spr->runAction(ever);
 
