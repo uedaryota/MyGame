@@ -104,20 +104,35 @@ bool HelloWorld::init()
 	//Spriteの生成
 	Sprite* spr = Sprite::create("neko.png");
 	this->addChild(spr);
-	spr->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
 
-	JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
-	//DelayTime* action2 = DelayTime::create(1.0f);
-	//ToggleVisibility* action2 = ToggleVisibility::create();
-	JumpBy* action2 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
-	RemoveSelf* action3 = RemoveSelf::create();
-	Sequence* action4 = Sequence::create(action1, action2, action3, nullptr);
-	RotateTo* action5 = RotateTo::create(2.0f, Vec3(14400, 0, 0));
-	Spawn* action6 = Spawn::create(action4, action5, nullptr);
-	//指定アクションを3回繰り返すアクション
-	RepeatForever* action7 = RepeatForever::create(action6);
-	//連携アクションを実行
-	spr->runAction(action7);
+	spr->setPosition(Vec2(visibleSize.width - 100, visibleSize.height - 100));
+	spr->setScale(0.5f);
+
+	// 移動アクションの生成
+	MoveTo* moveLeft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
+	MoveTo* moveRight = MoveTo::create(5.0f, Vec2(visibleSize.width - 100, visibleSize.height - 100));
+	RotateTo* action = RotateTo::create(10.0f, Vec3(360 * 8 * 10, 0, 0));
+
+	// 連続アクションの生成
+	Sequence* seq = Sequence::create(moveLeft, moveRight, nullptr);
+	Spawn* spa = Spawn::create(seq, action, nullptr);
+	RepeatForever* ever = RepeatForever::create(spa);
+	// アクション実行
+	spr->runAction(ever);
+
+	//JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
+	////DelayTime* action2 = DelayTime::create(1.0f);
+	////ToggleVisibility* action2 = ToggleVisibility::create();
+	//JumpBy* action2 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
+	////自身を削除するアクション(必ず最後に組み込む)
+	////RemoveSelf* action3 = RemoveSelf::create();
+	//Sequence* action4 = Sequence::create(action1, action2, action3, nullptr);
+	//RotateTo* action5 = RotateTo::create(2.0f, Vec3(14400, 0, 0));
+	//Spawn* action6 = Spawn::create(action4, action5, nullptr);
+	////指定アクションを3回繰り返すアクション
+	//RepeatForever* action7 = RepeatForever::create(action6);
+	////連携アクションを実行
+	//spr->runAction(action7);
 
 	//移動アクションの生成
 	//MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
