@@ -101,6 +101,25 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
+	//Spriteの生成
+	Sprite* spr = Sprite::create("neko.png");
+	this->addChild(spr);
+
+	//移動アクションの生成
+	MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+	//ジャンプアクションの生成
+	JumpTo* action2 = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
+	//カラーアクション？
+	TintTo* action3 = TintTo::create(2.0f, Color3B(255, 255, 0));
+	//連携アクション(移動→ジャンプ)の生成
+	//Sequence* action3 = Sequence::create(action1, action2, nullptr);
+	//同時アクション(移動＆ジャンプ)の生成
+	Spawn* action4 = Spawn::create(action2, action3, nullptr);
+	Sequence* action5 = Sequence::create(action1, action4, nullptr);
+	//連携アクションを実行
+	//spr->runAction(action3);
+	spr->runAction(action5);
+
 	//for (int i = 0; i < 10; i++)
 	//{
 	//	//float sx, sy;
