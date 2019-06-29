@@ -109,10 +109,12 @@ bool HelloWorld::init()
 	JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
 	JumpBy* action2 = JumpBy::create(0.5f, Vec2(-100.0f, .0f), 100, 7);
 	Sequence* action3 = Sequence::create(action1, action2, nullptr);
+	RotateTo* action4 = RotateTo::create(1.0f, Vec3(7200, 100, 100));
+	Spawn* action5 = Spawn::create(action3, action4, nullptr);
 	//指定アクションを3回繰り返すアクション
-	Repeat* action4 = Repeat::create(action3, 7);
+	RepeatForever* action6 = RepeatForever::create(action5);
 	//連携アクションを実行
-	spr->runAction(action4);
+	spr->runAction(action6);
 
 	//移動アクションの生成
 	//MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
