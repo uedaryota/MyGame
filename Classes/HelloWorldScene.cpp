@@ -124,10 +124,12 @@ bool HelloWorld::init()
 	Sequence* seq2 = Sequence::create(fadeOut, fadeIn, nullptr);
 
 	// 同時アクションの生成
-	Spawn* allAction = Spawn::create(seq1, seq2, action , nullptr);
-	RepeatForever* ever = RepeatForever::create(allAction);
+	Spawn* spawn = Spawn::create(seq1, seq2, action, nullptr);
+
+	// 繰り返しアクションの生成
+	Repeat* allAction = Repeat::create(spawn, 5);
 	// アクション実行
-	spr->runAction(ever);
+	spr->runAction(allAction);
 
 	//JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
 	////DelayTime* action2 = DelayTime::create(1.0f);
