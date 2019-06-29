@@ -109,27 +109,23 @@ bool HelloWorld::init()
 	spr->setScale(0.5f);
 
 	// 移動アクションの生成
-	MoveTo* moveLeft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
-	MoveTo* moveRight = MoveTo::create(5.0f, Vec2(visibleSize.width - 100, visibleSize.height - 100));
+	MoveBy* moveLeft = MoveBy::create(1.0f, Vec2(-(visibleSize.width - 200), 0));
+	MoveBy* moveDown = MoveBy::create(1.0f, Vec2(0, -(visibleSize.height - 200)));
+	MoveBy* moveRight = MoveBy::create(1.0f, Vec2(visibleSize.width - 200, 0));
+	MoveBy* moveUp = MoveBy::create(1.0f, Vec2(0, visibleSize.height - 200));
 	RotateTo* action = RotateTo::create(10.0f, Vec3(360 * 8 * 10, 0, 0));
 
 	// 連続アクションの生成 
-	Sequence* seq1 = Sequence::create(moveLeft, moveRight, nullptr);
+	Sequence* seq1 = Sequence::create(moveLeft, moveDown, moveRight, moveUp, nullptr);
 
-	// フェードアクションの生成
-	FadeOut* fadeOut = FadeOut::create(5.0f);
-	FadeIn* fadeIn = FadeIn::create(5.0f);
+	//同時アクションの生成
+	Spawn* spa = Spawn::create(seq1, action, nullptr);
 
-	// 連続アクションの生成
-	Sequence* seq2 = Sequence::create(fadeOut, fadeIn, nullptr);
+	//無限ループって怖くね？
+	RepeatForever* ever = RepeatForever::create(spa);
 
-	// 同時アクションの生成
-	Spawn* spawn = Spawn::create(seq1, seq2, action, nullptr);
-
-	// 繰り返しアクションの生成
-	Repeat* allAction = Repeat::create(spawn, 5);
 	// アクション実行
-	spr->runAction(allAction);
+	spr->runAction(ever);
 
 	//JumpBy* action1 = JumpBy::create(0.5f, Vec2(100.0f, 0.0f), 100, 7);
 	////DelayTime* action2 = DelayTime::create(1.0f);
