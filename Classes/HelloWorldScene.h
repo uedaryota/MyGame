@@ -42,22 +42,9 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
-	//Sprite配列
-	cocos2d::Sprite* sprite[10000];
+	int audioID;
 
-	//スプライト
-	/*cocos2d::Sprite* sprite;
-	cocos2d::Sprite* sprite2;*/
-
-	//実行からのカウント
-	int counter;
-
-	//どちらかに移動中なのか
-	int state;
-
-	float rot;
-
-	float blue;
+	int counter = 60;
 
 	//不透明度
 	//float opacity;
