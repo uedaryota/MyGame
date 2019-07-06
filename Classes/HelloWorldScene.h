@@ -35,16 +35,15 @@ public:
     virtual bool init();
 
 	void update(float delta)override;
+
+	//é©çÏä÷êî
+	void myFunction();
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-
-	int audioID;
-
-	int counter = 60;
 
 	//ïsìßñæìx
 	//float opacity;

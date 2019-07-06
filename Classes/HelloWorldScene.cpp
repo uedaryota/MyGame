@@ -102,8 +102,20 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-	//音
-	audioID =  experimental::AudioEngine::play2d("a.mp3", true, 0.5f);
+
+	//関数呼び出しアクションの作成
+	//CC_CALLBACK_0 第一関数:呼び出したいメンバ関数
+	//CC_CALLBACK_0 第二関数:メンバ関数を呼び出すオブジェクト
+	CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this));
+
+	//指定秒待機するアクション
+	DelayTime* delay = DelayTime::create(1.0f);
+
+	//連続アクション
+	Sequence* seq = Sequence::create(delay, callFunc, nullptr);
+
+	//アクションを実行
+	this->runAction(seq);
 
 	//update
 	this->scheduleUpdate();
@@ -127,20 +139,12 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	counter--;
+}
 
-	if (counter == 60)
-	{
-		experimental::AudioEngine::pause(audioID);
-		//引数の音を止める
-		//experimental::AudioEngine::stop(audioID);
-		//AudioEngineで鳴らしているもの全てを止める
-		//experimental::AudioEngine::stopAll();
-		//再生
-		//experimental::AudioEngine::play2d("a.mp3");
-	}
-	if (counter == 0)
-	{
-		experimental::AudioEngine::resume(audioID);
-	}
+void HelloWorld::myFunction()
+{
+	//任意の処理
+	Sprite* spr = Sprite::create("neko.png");
+	this->addChild(spr);
+	this->setPosition(Vec2(600, 350));
 }
