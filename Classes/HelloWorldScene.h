@@ -38,6 +38,8 @@ public:
 
 	//©ìŠÖ”
 	void myFunction();
+
+	void myFunction2(std::string filename);
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);

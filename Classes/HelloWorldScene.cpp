@@ -106,7 +106,9 @@ bool HelloWorld::init()
 	//関数呼び出しアクションの作成
 	//CC_CALLBACK_0 第一関数:呼び出したいメンバ関数
 	//CC_CALLBACK_0 第二関数:メンバ関数を呼び出すオブジェクト
-	CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this));
+	//CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this));
+
+	CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction2, this, "neko.png"));
 
 	//指定秒待機するアクション
 	DelayTime* delay = DelayTime::create(1.0f);
@@ -145,6 +147,14 @@ void HelloWorld::myFunction()
 {
 	//任意の処理
 	Sprite* spr = Sprite::create("neko.png");
+	this->addChild(spr);
+	this->setPosition(Vec2(600, 350));
+}
+
+void HelloWorld::myFunction2(std::string filename)
+{
+	//任意の処理
+	Sprite* spr = Sprite::create(filename);
 	this->addChild(spr);
 	this->setPosition(Vec2(600, 350));
 }
