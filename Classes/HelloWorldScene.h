@@ -40,7 +40,9 @@ public:
 	void myFunction();
 
 	void myFunction2(std::string filename);
-    
+
+	void myFunction3(int conunt);
+
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
