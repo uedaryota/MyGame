@@ -81,8 +81,15 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-	//update
-	this->scheduleUpdate();
+	// イベントリスナーを作成する
+	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+	// イベントリスナーに各コールバック関数をセットする
+	listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+	listener->onTouchCancelled = CC_CALLBACK_2(HelloWorld::onTouchCancelled, this);
+	// イベントリスナーを登録する
+	this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 
     return true;
 }
@@ -108,6 +115,12 @@ void HelloWorld::update(float delta)
 // タッチ開始時に呼ばれる関数
 bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 {
+	// タッチ座標を取得
+	Vec2 touch_pos = touch->getLocation();
+
+	// 座標を作ったりして、何かする
+
+
 	// ここでtrueを返すと、onTouchEndedまでタッチ処理が続きます。
 	return true;
 }
