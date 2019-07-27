@@ -81,24 +81,6 @@ bool HelloWorld::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-	//関数呼び出しアクションの作成
-	//CC_CALLBACK_0 第一関数:呼び出したいメンバ関数
-	//CC_CALLBACK_0 第二関数:メンバ関数を呼び出すオブジェクト
-	//CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction, this));
-
-	//CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction2, this, "neko.png"));
-
-	CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction3, this, 5));
-
-	//指定秒待機するアクション
-	DelayTime* delay = DelayTime::create(1.0f);
-
-	//連続アクション
-	Sequence* seq = Sequence::create(delay, callFunc, nullptr);
-
-	//アクションを実行
-	this->runAction(seq);
-
 	//update
 	this->scheduleUpdate();
 
@@ -123,37 +105,27 @@ void HelloWorld::update(float delta)
 {
 }
 
-void HelloWorld::myFunction()
+// タッチ開始時に呼ばれる関数
+bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 {
-	//任意の処理
-	Sprite* spr = Sprite::create("neko.png");
-	this->addChild(spr);
-	this->setPosition(Vec2(600, 350));
+	// ここでtrueを返すと、onTouchEndedまでタッチ処理が続きます。
+	return true;
 }
 
-void HelloWorld::myFunction2(std::string filename)
+// タッチから動かした時に呼ばれる関数
+void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
 {
-	//任意の処理
-	Sprite* spr = Sprite::create(filename);
-	this->addChild(spr);
-	this->setPosition(Vec2(600, 350));
+
 }
 
-void HelloWorld::myFunction3(int count)
+// タッチ終了時に呼ばれる関数
+void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 {
-	//任意の処理
-	Sprite* spr = Sprite::create("neko.png");
-	this->addChild(spr);
-	this->setPosition(Vec2(600, 350));
 
-	if (count > 1)
-	{
-		CallFunc* callFunc = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction3, this, count - 1));
-		//指定秒待機するアクション
-		DelayTime* delay = DelayTime::create(1.0f);
-		//連続アクション
-		Sequence* seq = Sequence::create(delay, callFunc, nullptr);
+}
 
-		this->runAction(seq);
-	}
+// タッチがキャンセルされた時に呼ばれる関数
+void HelloWorld::onTouchCancelled(Touch *touch, Event *unused_event)
+{
+
 }
