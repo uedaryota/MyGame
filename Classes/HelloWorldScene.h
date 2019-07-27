@@ -46,6 +46,8 @@ public:
 
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
+
+	cocos2d::MotionStreak* m_pStreak;
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);

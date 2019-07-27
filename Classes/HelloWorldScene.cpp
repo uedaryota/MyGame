@@ -119,7 +119,11 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 	Vec2 touch_pos = touch->getLocation();
 
 	// 座標を作ったりして、何かする
-
+	// モーションストリークを作成して、メンバ変数に保存
+	// フェード時間、表示が始まるための移動距離、画像のサイズ、色、画像ファイル
+	m_pStreak = MotionStreak::create(0.5f, 1.0f, 20.0f, Color3B(0xff, 0xff, 0xff), "neko.png");
+	m_pStreak->setPosition(touch_pos);
+	this->addChild(m_pStreak);
 
 	// ここでtrueを返すと、onTouchEndedまでタッチ処理が続きます。
 	return true;
@@ -128,17 +132,29 @@ bool HelloWorld::onTouchBegan(Touch *touch, Event *unused_event)
 // タッチから動かした時に呼ばれる関数
 void HelloWorld::onTouchMoved(Touch *touch, Event *unused_event)
 {
+	// タッチ座標を取得
+	Vec2 touch_pos = touch->getLocation();
 
+	m_pStreak->setPosition(touch_pos);
 }
 
 // タッチ終了時に呼ばれる関数
 void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
 {
+	// タッチ座標を取得
+	Vec2 touch_pos = touch->getLocation();
 
+	m_pStreak->setPosition(touch_pos);
 }
 
 // タッチがキャンセルされた時に呼ばれる関数
 void HelloWorld::onTouchCancelled(Touch *touch, Event *unused_event)
 {
-
+	// 作成済みモーションストリークがあれば
+	if (m_pStreak != nullptr)
+	{
+		// 親から切り離して解放
+		m_pStreak->removeFromParent();
+		m_pStreak = nullptr;
+	}
 }
